@@ -1,0 +1,47 @@
+#!/usr/bin/env php
+<?php
+/**
+ * ----------------------------------------------------------------------------
+ * This code is part of the Sclable Business Application Development Platform
+ * and is subject to the provisions of your License Agreement with
+ * Sclable Business Solutions GmbH.
+ *
+ * @copyright (c) 2015 Sclable Business Solutions GmbH
+ * ----------------------------------------------------------------------------
+ */
+
+if (PHP_SAPI !== 'cli') {
+    echo 'Warning: bob should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+}
+
+$fix = isset($argv[1]) ? $argv[1] : null;
+
+if (empty($fix)) {
+    echo 'missing command line argument.' . PHP_EOL . 'usage: ' . $argv[0] . ' <dir|filename>' . PHP_EOL;
+    die(1);
+}
+
+$cwd = getcwd();
+if (is_dir($fix) || is_file($fix)) {
+    $fixDir = $fix;
+} else {
+    $fixDir = $cwd . '/' . $fix;
+    if (!is_dir($fixDir) && !is_file($fixDir)) {
+        echo 'file or directory not found: ' . $fix . PHP_EOL;
+        die(1);
+    }
+}
+
+echo '------ run code fixer ------' . PHP_EOL;
+
+passthru(
+    $cwd . '/vendor/bin/phpcbf --standard='
+    . dirname(__DIR__) . '/src/php/php_coding_standards/SclableStandard/ruleset.xml '
+    . $fixDir,
+    $phpCsReturn
+);
+
+echo PHP_EOL;
+echo '> finish.' . PHP_EOL . PHP_EOL;
+
+exit($phpCsReturn);

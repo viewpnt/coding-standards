@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="SclableStandard">
+    <description>Sclable Coding Standards</description>
+    <!-- sclable standard is based on PSR2 -->
+    <rule ref="PSR2">
+        <!-- exclude rule to only warn for LF after control signature -->
+        <exclude name="Squiz.ControlStructures.ControlSignature"/>
+        <!-- exception for magic getter & setter: get_CamelCase() | set_CamelCase(true) -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName" />
+    </rule>
+
+    <!-- additional generic code analysis tools -->
+
+    <!-- DuplicateClassName
+        looks for possible duplicates in the repository
+    -->
+    <rule ref="Generic.Classes.DuplicateClassName"/>
+
+    <!-- EmptyStatement
+        if (true) {
+            // nothing
+        }
+     -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+
+    <!-- ForLoopShouldBeWhileLoop
+        e.g.
+        for (;$i < 50;) { $i++; }
+    -->
+    <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
+
+    <!-- ForLoopWithTestFunctionCall
+        e.g.
+        $arr = [1, 2, 3, 4];
+        for ($i = 0; $i < count($arr); $i++) {
+            $arr[$i] *= $arr[$i];
+        }
+    -->
+    <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
+
+    <!-- JumbledIncrementer
+        e.g.
+        for ($i = 0; $i < 10; $i++) {
+            for ($ii = 0; $ii < 20; $i++) {
+                echo ($i * $ii);
+            }
+        }
+
+    -->
+    <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
+
+    <!-- UnconditionalIfStatement
+        e.g.
+        if (true) {
+            // optimistic code block.
+        }
+
+    -->
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+
+    <!-- UnnecessaryFinalModifier
+        final class myClass
+        {
+            final public function end()
+            {
+                // [...]
+            }
+        }
+    -->
+    <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
+
+    <!-- this one may be omitted, because of unused, but inherited parameters -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+    <!-- UselessOverridingMethod:
+        function myMethod()
+        {
+            return parent::myMethod();
+        }
+    -->
+    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
+
+    <!-- InlineControlStructure:
+        // not allowed
+        while ($i < 50) $i++;
+        if (true) $true = true;
+
+        // allowed
+        if ($answer == 42) {
+            $computer->findQuestion();
+        }
+    -->
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+    <!-- avoid files with BOM -->
+    <rule ref="Generic.Files.ByteOrderMark"/>
+
+    <!-- file must end with a LF -->
+    <rule ref="Generic.Files.LineEndings"/>
+
+    <!-- detect possible commented out code -->
+    <rule ref="Squiz.PHP.CommentedOutCode">
+        <properties>
+            <!-- if more than 35% of the commented line is code, a warning is raised  -->
+            <property name="maxPercentage" value="35"/>
+        </properties>
+    </rule>
+
+    <!-- definitely do not allow usage of eval for obvious reasons. -->
+    <rule ref="Squiz.PHP.Eval"/>
+
+    <!-- DiscouragedFunctions:
+        functions often used for "ghetto debugging"
+        e.g. print_r, error_log
+    -->
+    <rule ref="Squiz.PHP.DiscouragedFunctions"/>
+
+    <!-- ForbiddenFunctions
+        detect usage of php functions that work as an alias for
+        legacy php code support and may be removed in future versions.
+        e.g. delete($var), sizeof($var)
+     -->
+    <rule ref="Squiz.PHP.ForbiddenFunctions"/>
+
+    <!-- GlobalKeyword
+        function myIncrement() {
+            global $i; // there must be a better way
+            $i++;
+        }
+
+    -->
+    <rule ref="Squiz.PHP.GlobalKeyword"/>
+
+    <!-- LowercasePHPFunctions
+        php functions are in lower case and should be called this way.
+    -->
+    <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+
+    <!-- NonExecutableCode
+        detect code that never will be executed, e.g.:
+
+        function yay() {
+            return 'yay';
+            $yayCounter++;
+        }
+
+        while ($i < 50) {
+            $i++;
+            continue;
+
+            $i *= $i;
+        }
+
+     -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+</ruleset>
