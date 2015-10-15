@@ -51,6 +51,18 @@ cd path/to/project/root
 php vendor/bin/sclfix path/to/source
 ```
 
+Changelog
+---------
+
+* 0.1.0.0
+** Mess detection configuration/added
+** Code sniffer standards
+*** ruleset.xml
+*** NamingConventions Sniff
+*** ControlStructures Sniff
+*** CamelCapsMethodNames Sniff
+*** CommentingNoHash Sniff
+
 
 License
 -------
