@@ -2,7 +2,7 @@
 <!--
 	Copyright (c) 2015, Sclable Business Solutions GmbH
 -->
-<project name="sclable/php-toolbox" default="dist" basedir=".">
+<project name="sclable/coding-standards" default="dist" basedir=".">
 
     <!-- ============================================  -->
     <!-- Settings                                      -->
