@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Sclable LaTex Package.
+ * This file is part of the Sclable Coding Standards Package.
  *
  * @copyright (c) 2015 Sclable Business Solutions GmbH
  *
