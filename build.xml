@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2015, Sclable Business Solutions GmbH
+-->
+<project name="sclable/php-toolbox" default="dist" basedir=".">
+
+    <!-- ============================================  -->
+    <!-- Settings                                      -->
+    <!-- ============================================  -->
+
+    <property name="version" value="0.1.0.0-dev" override="true" />
+    <property name="pkg_key" value="sclable-coding-standards" override="false" />
+
+    <property name="build-dir" value="build" />
+    <property name="build-tmp" value="${build-dir}/_build" />
+    <property name="dist-file" value="${pkg_key}.zip" />
+
+    <fileset id="sources" dir="src">
+        <include name="**/*.php" />
+    </fileset>
+
+    <fileset id="packageInfo" dir="./">
+        <include name="package.xml" />
+        <include name="bootstrap.inc.php" />
+    </fileset>
+
+    <filterchain id="versionInfo">
+        <replacetokens begintoken="@@" endtoken="@@">
+            <token key="version" value="${version}" />
+        </replacetokens>
+    </filterchain>
+
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+    <target name="prepare" description="Prepare for build, reset temp dir">
+        <echo msg="prepare build directory" />
+        <delete dir="${build-tmp}" />
+        <mkdir dir="${build-tmp}" />
+        <mkdir dir="${build-tmp}/src" />
+        <delete file="${build-dir}/${dist-file}" />
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: pkg                                   -->
+    <!-- ============================================  -->
+    <target name="pkg" depends="prepare" description="prepare the dist build, copy files to temp dir">
+        <echo msg="build package" />
+        <copy todir="${build-tmp}/src">
+            <fileset refid="sources" />
+            <mapper type="glob" from="*.php" to="*.class.php"/>
+            <!--<filterchain refid="versionInfo" />-->
+        </copy>
+        <copy todir="${build-tmp}">
+            <fileset refid="packageInfo" />
+            <filterchain refid="versionInfo" />
+        </copy>
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: dist-pkg                              -->
+    <!-- ============================================  -->
+    <target name="dist-pkg" depends="pkg">
+        <echo msg="compress package ..." />
+        <zip destfile="${build-dir}/${dist-file}">
+            <fileset dir="${build-tmp}/">
+                <include name="**/**" />
+            </fileset>
+        </zip>
+    </target>
+
+    <!-- ============================================  -->
+    <!-- dist (default)                                -->
+    <!-- ============================================  -->
+    <target name="dist" depends="dist-pkg">
+        <echo message="dist package generated." />
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: tests                                 -->
+    <!-- ============================================  -->
+    <target name="lint">
+        <phplint haltonfailure="true">
+            <fileset refid="sources" />
+        </phplint>
+    </target>
+
+    <target name="sclablecheck">
+        <echo msg="phpcs / phpmd sources" />
+        <exec command="bin/sclcheck src" checkreturn="true" passthru="true" />
+        <echo msg="phpcs / phpmd bin" />
+        <exec command="bin/sclcheck bin" checkreturn="true" passthru="true" />
+    </target>
+
+    <!--<target name="unittests" description="unit tests">-->
+        <!--<exec command="vendor/bin/phpunit &#45;&#45;testsuite default &#45;&#45;stop-on-failure &#45;&#45;log-junit ${build-dir}/junit.xml &#45;&#45;coverage-xml ${build-dir}/coverage" checkreturn="true" passthru="true" />-->
+        <!--<echo msg="Unit tests complete." />-->
+    <!--</target>-->
+
+    <!--<target name="functionaltests" description="functional tests">-->
+        <!--<exec command="vendor/bin/behat &#45;&#45;no-interaction &#45;&#45;stop-on-failure " checkreturn="true" passthru="true" />-->
+        <!--<echo msg="Unit tests complete." />-->
+    <!--</target>-->
+
+    <target name="ci" depends="lint, sclablecheck">
+        <echo message="CI Tests completed." />
+    </target>
+
+</project>
