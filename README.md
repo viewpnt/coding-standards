@@ -50,3 +50,9 @@ vendor/bin/sclfix path/to/source
 cd path/to/project/root
 php vendor/bin/sclfix path/to/source
 ```
+
+
+License
+-------
+
+For the license and copyright see the [LICENSE](LICENSE) file.
