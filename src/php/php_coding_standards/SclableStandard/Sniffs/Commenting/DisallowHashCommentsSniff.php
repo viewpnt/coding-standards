@@ -1,12 +1,11 @@
 <?php
 /**
- * ----------------------------------------------------------------------------
- * This code is part of the Sclable Business Application Development Platform
- * and is subject to the provisions of your License Agreement with
- * Sclable Business Solutions GmbH.
+ * This file is part of the Sclable LaTex Package.
  *
  * @copyright (c) 2015 Sclable Business Solutions GmbH
- * ----------------------------------------------------------------------------
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace SclableStandard\Sniffs\Commenting;
@@ -18,7 +17,7 @@ use SclableStandard\Sniffs\SclableCodeSnifferAbstract;
  *
  *
  * @author Michael Rutz <michael.rutz@sclable.com>
- *
+ * @see https://github.com/squizlabs/PHP_CodeSniffer/wiki/Coding-Standard-Tutorial#disallowhashcommentssniffphp
  */
 class DisallowHashCommentsSniff extends SclableCodeSnifferAbstract
 {
