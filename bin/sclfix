@@ -21,9 +21,10 @@ if (empty($fix)) {
     die(1);
 }
 
-include dirname(__DIR__) . '/vendor/autoload.php';
-
 $cwd = getcwd();
+/** @noinspection PhpIncludeInspection */
+include $cwd . '/vendor/autoload.php';
+
 if (is_dir($fix) || is_file($fix)) {
     $fixDir = $fix;
 } else {
