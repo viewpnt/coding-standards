@@ -22,7 +22,7 @@ if (empty($test)) {
 }
 
 $cwd = getcwd();
-$vendorDir = dirname(dirname(dirname(__FILE__)));
+$vendorDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 /** @noinspection PhpIncludeInspection */
 include $vendorDir . '/autoload.php';
