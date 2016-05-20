@@ -22,8 +22,10 @@ if (empty($fix)) {
 }
 
 $cwd = getcwd();
+$vendorDir = dirname(dirname(dirname(__FILE__)));
+
 /** @noinspection PhpIncludeInspection */
-include $cwd . '/vendor/autoload.php';
+include $vendorDir . '/autoload.php';
 
 if (is_dir($fix) || is_file($fix)) {
     $fixDir = $fix;
@@ -37,7 +39,7 @@ if (is_dir($fix) || is_file($fix)) {
 
 echo '------ run code fixer ------' . PHP_EOL;
 
-$processBuilder = new \Symfony\Component\Process\ProcessBuilder(['vendor/bin/phpcbf']);
+$processBuilder = new \Symfony\Component\Process\ProcessBuilder([$vendorDir .'/bin/phpcbf']);
 $processBuilder
     ->setWorkingDirectory($cwd)
     ->add('--standard=' . dirname(__DIR__) . '/src/php/php_coding_standards/SclableStandard/ruleset.xml')
