@@ -87,9 +87,9 @@
 
     <target name="sclablecheck">
         <echo msg="phpcs / phpmd sources" />
-        <exec command="bin/sclcheck src" checkreturn="true" passthru="true" />
+        <exec command="php bin/sclcheck src" checkreturn="true" passthru="true" />
         <echo msg="phpcs / phpmd bin" />
-        <exec command="bin/sclcheck bin" checkreturn="true" passthru="true" />
+        <exec command="php bin/sclcheck bin" checkreturn="true" passthru="true" />
     </target>
 
     <!--<target name="unittests" description="unit tests">-->
