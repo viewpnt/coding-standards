@@ -22,18 +22,7 @@ if (empty($fix)) {
 }
 
 $cwd = getcwd();
-$vendorDir = dirname(__FILE__) .DIRECTORY_SEPARATOR .'..' .DIRECTORY_SEPARATOR .'vendor';
-if(!is_dir($vendorDir)) { //check dir exists in case of use this script within the "phing ci" task
-    $vendorDir = dirname(__FILE__) .DIRECTORY_SEPARATOR .'..';
-}
-$autoloadFile = $vendorDir .DIRECTORY_SEPARATOR .'autoload.php';
-while(is_dir($vendorDir) && !file_exists($autoloadFile)) { //find the closest vendor directory
-    $vendorDir .= DIRECTORY_SEPARATOR .'..';
-    $autoloadFile = $vendorDir .DIRECTORY_SEPARATOR .'autoload.php';
-}
-
-/** @noinspection PhpIncludeInspection */
-include $autoloadFile;
+$vendorDir = require dirname(__DIR__) . '/src/php/bootstrap.php';
 
 if (is_dir($fix) || is_file($fix)) {
     $fixDir = $fix;
