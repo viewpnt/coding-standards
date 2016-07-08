@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://factory.sclable.com/schemata/2.0/package.xsd"
+         xsi:noNamespaceSchemaLocation="https://alice.sclable.com/schemata/2.1/package.xsd"
          name="Sclable Coding Standards"
          key="sclable-coding-standards"
          description="Our code of conduct requires strict adherence to the FIG PSR standards. The automated checks are collected in this Tool."
-         version="@@version@@"
-        >
-    <install/>
+         version="0.2.0">
 </package>
