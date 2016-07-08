@@ -22,8 +22,7 @@ if (empty($test)) {
 }
 
 $cwd = getcwd();
-/** @noinspection PhpIncludeInspection */
-include $cwd . '/vendor/autoload.php';
+$vendorDir = require dirname(__DIR__) . '/src/php/bootstrap.php';
 
 if (is_dir($test) || is_file($test)) {
     $testDir = $test;
@@ -37,7 +36,7 @@ if (is_dir($test) || is_file($test)) {
 
 echo '------ run code sniffer ------' . PHP_EOL;
 
-$processBuilder = new \Symfony\Component\Process\ProcessBuilder([ 'vendor/bin/phpcs', '-p' ]);
+$processBuilder = new \Symfony\Component\Process\ProcessBuilder([ $vendorDir .'/bin/phpcs', '-p' ]);
 $processBuilder
     ->setWorkingDirectory($cwd)
     ->add('--standard=' . dirname(__DIR__) . '/src/php/php_coding_standards/SclableStandard/ruleset.xml')
@@ -52,7 +51,7 @@ if ($phpCsReturn === 0) {
 
 echo '------ run mess detector ------' . PHP_EOL;
 
-$processBuilder = new \Symfony\Component\Process\ProcessBuilder([ 'vendor/bin/phpmd' ]);
+$processBuilder = new \Symfony\Component\Process\ProcessBuilder([ $vendorDir .'/bin/phpmd' ]);
 $processBuilder
     ->setWorkingDirectory($cwd)
     ->add($testDir)

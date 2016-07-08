@@ -10,16 +10,22 @@ Usage
 
 ### Installation
 
-Installation with [composer](https://getcomposer.org):
+Installation with [composer](https://getcomposer.org) as a dependency in your project:
 
 ```bash
-# install with composer
-composer require --dev sclable/coding-standards
+composer require --dev sclable/coding-standards:*
+```
+
+A global installation is also recommended. If you put the global `vendor/bin` into you `$PATH` environment variable, the command `sclcheck` and `sclfix` can be used from anywhere (see description [here](https://getcomposer.org/doc/03-cli.md#global)).
+To do so, execute:
+
+```bash
+composer global require sclable/coding-standards:*
 ```
 
 ### Included tools
 
-Currently two tools are integraged:
+Currently two tools are integrated:
 
 - [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
 - [PHP MessDetector](http://phpmd.org)
@@ -56,15 +62,7 @@ php vendor/bin/sclfix path/to/source
 Changelog
 ---------
 
-* 0.1.0.0
-** Mess detection configuration/added
-** Code sniffer standards
-*** ruleset.xml
-*** NamingConventions Sniff
-*** ControlStructures Sniff
-*** CamelCapsMethodNames Sniff
-*** CommentingNoHash Sniff
-
+See the [CHANGELOG](CHANGELOG.md) file.
 
 License
 -------
