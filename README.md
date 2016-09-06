@@ -1,7 +1,7 @@
 Sclable Coding Standards
 ========================
 
-Our code of conduct requires strict adherence to the FIG PSR standards. The automated checks are collected in this Tool.
+Our code of conduct requires strict adherence to the [PHP-FIG](http://www.php-fig.org) standards. The automated checks are collected in this Tool.
 
 [![Build Status](https://travis-ci.org/sclable/coding-standards.svg?branch=0.1.0.0)](https://travis-ci.org/sclable/coding-standards)
 
