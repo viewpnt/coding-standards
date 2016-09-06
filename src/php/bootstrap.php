@@ -9,15 +9,16 @@
  * ----------------------------------------------------------------------------
  */
 
-if (file_exists(dirname(__DIR__) . '/../vendor/autoload.php')) {
-    include dirname(__DIR__) . '/../vendor/autoload.php';
-    $vendorDir = dirname(__DIR__) . '/../vendor';
-} elseif (file_exists(dirname(__DIR__) . '/../../../autoload.php')) {
-    include dirname(__DIR__) . '/../../../autoload.php';
-    $vendorDir = dirname(__DIR__) . '/../../../vendor';
+$devEnv = realpath(__DIR__ . '/../../vendor');
+$prodEnv = realpath(__DIR__ . '/../../../..');
+
+if (file_exists($devEnv . '/autoload.php')) {
+    include $devEnv . '/autoload.php';
+    return $devEnv;
+} elseif (file_exists($prodEnv . '/autoload.php')) {
+    include $prodEnv . '/autoload.php';
+    return $prodEnv;
 } else {
     echo 'Unable to detect Composer autoload.php file.' . PHP_EOL;
     die(1);
 }
-
-return $vendorDir;
