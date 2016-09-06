@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+0.2.1
+-----
+
+### Bug Fixes
+
+- **bootstrap:** find correct vendor path (f0c7916), fixes #4
+
+
 0.2.0
 -----
 
