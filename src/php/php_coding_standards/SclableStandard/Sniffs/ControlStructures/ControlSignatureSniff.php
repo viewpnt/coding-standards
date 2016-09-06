@@ -50,7 +50,6 @@ class ControlSignatureSniff extends SclableCodeSnifferAbstract
             T_ELSEIF,
             T_SWITCH,
         );
-
     }
 
     /**
@@ -66,7 +65,6 @@ class ControlSignatureSniff extends SclableCodeSnifferAbstract
         $this->singleSpaceAfterClosingParenthesis();
         $this->singleNewLineAfterOpeningBrace();
         $this->checkMultiKeyWordStructures();
-
     }
 
     /**
@@ -164,7 +162,6 @@ class ControlSignatureSniff extends SclableCodeSnifferAbstract
                 }
             }
         );
-
     }
 
     /**
@@ -202,7 +199,6 @@ class ControlSignatureSniff extends SclableCodeSnifferAbstract
             $opener,
             $next
         );
-
     }
 
     /**
